@@ -12,12 +12,18 @@ public class TestThread extends Thread {
     @Override
     public void run() {
         System.out.println(currentThread());
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 60; i++) {
             System.out.println(name + "::" + i);
+
             try {
-                sleep(10);
+                sleep(600);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                return;
+            }
+
+
+            if (i == 30) {
+                yield();
             }
         }
     }
